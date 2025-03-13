@@ -19,10 +19,11 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest || echo "Failed to push latest image"
+      - docker push $REPOSITORY_URI:$IMAGE_TAG || echo "Failed to push tagged image"
       - echo Writing image definitions file...
       - printf '[{"name":"%s","imageUri":"%s"}]' "$IMAGE_REPO_NAME" "$REPOSITORY_URI:$IMAGE_TAG" > imagedefinitions.json
+
 
 artifacts:
   files:
