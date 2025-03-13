@@ -4,7 +4,6 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - mvn clean install
       - aws --version
       - REPOSITORY_URI=971422674564.dkr.ecr.eu-north-1.amazonaws.com
       - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
